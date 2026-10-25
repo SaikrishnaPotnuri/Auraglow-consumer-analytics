@@ -1,0 +1,5 @@
+*.duckdb
+*.db
+*.csv
+*.xlsx
+.DS_Store

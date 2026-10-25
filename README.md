@@ -67,3 +67,32 @@ An ordinary `INNER JOIN` completely drops any consumer record that fails to plac
 
 ### 4. Code Architecture Note
 The underlying query is highly optimized for modern OLAP analytics. If you see visual red error highlights or linting squiggles beneath the `WITH` statement in tools like VS Code or SQL Workbench, this represents an artificial dialect mismatch, not a script error. Generic IDE database extensions evaluate code models using standard transactional rules (like PostgreSQL or MySQL) which fail to recognize modern analytic keywords such as DuckDB's native `QUALIFY` filter.
+---
+
+## Enterprise Production Pipeline Architecture
+
+This repository is structured to replicate an end-to-end enterprise analytical pipeline, bridging packaged application transaction logs with scalable downstream analytics and predictive artificial intelligence models:
+
+```
+[Packaged App Development Influx] ➡️ Raw Transaction & Channel Metadata Logs
+│
+▼ (Automated Data Ingestion & Governance Engine)
+[scripts/pipeline_orchestrator.py] ➡️ DuckDB Columnar Store Session Context
+│
+├─► [queries/auraglow_analytic_pipelines.sql] ➡️ Core Data Analytics Layer
+│     • 90-Day Longitudinal Multi-Cohort Retention Decay Matrix
+│     • Matched-Market Promotional Media Campaign ROI Audit
+│
+└─► [scripts/customer_churn_predictor.py]     ➡️ Predictive AI/ML Layer
+• Scikit-Learn Feature Matrix Engineering Pipeline
+• Random Forest Classifier Churn Forecasting Network
+```
+### 1. Functional Data Operations & Lineage
+* **Upstream Ingestion:** Processes system telemetry logs, operational workflow inputs, and transactional histories generated across enterprise packaged modules.
+* **Orchestration Layer:** Utilizes object-oriented Python scripting (`pipeline_orchestrator.py`) to connect to database contexts, managing sequential pipeline execution gates and tracking system processing errors to ensure operational auditability.
+
+### 2. Predictive Machine Learning Framework (AI/ML)
+To shift from retroactive business intelligence to proactive retention management, a predictive classification engine was integrated directly into the core data architecture layer:
+* **Feature Matrix Engineering:** Extracts raw transaction histories and transforms categorical channel attributes into structured numerical input columns (Average Order Value, Channel Identifiers, 90-Day Transaction Ratios) using Pandas dataframes.
+* **Supervised Model Execution:** Trains a `RandomForestClassifier` engine via Scikit-Learn utilizing an 80/20 train-test validation boundary to isolate baseline consumer churn variables.
+* **Operational Impact:** Allows corporate operations teams to forecast high-risk client churn profiles automatically based on their systemic purchase behaviors before dropouts occur.
